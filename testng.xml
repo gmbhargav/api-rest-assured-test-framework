@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PET Store Suite">
+    <listeners>
+        <listener class-name="api.utilities.ExtentReportManager"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="Pet Store Tests">
+        <classes>
+        <class name="api.test.DataDrivenTests">
+<!--            <methods>-->
+<!--                <include name="createUserTest"/>-->
+<!--                <include name="getUserTest"/>-->
+<!--                <include name="deleteUserTest"/>-->
+<!--            </methods>-->
+        </class>
+            <class name="api.test.UserTests">
+<!--                <methods>-->
+<!--                    <include name="createUserTest"/>-->
+<!--                    <include name="getUserTest"/>-->
+<!--                    <include name="setUserPayloadTest"/>-->
+<!--                    <include name="deleteUserTest"/>-->
+<!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+</suite>

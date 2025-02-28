@@ -42,7 +42,6 @@
             <version>5.5.1</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
