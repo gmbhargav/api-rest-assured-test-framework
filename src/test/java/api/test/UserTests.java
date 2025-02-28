@@ -57,11 +57,22 @@ public class UserTests {
         Response rs = UserEndpoints.updateUser(userPayload.getUsername(),userPayload);
         rs.then().log().all();
         Assert.assertEquals(rs.getStatusCode(),200);
+        Response rs2= UserEndpoints.getUser(userPayload.getUsername());
+        rs2.then().log().all();
+        Assert.assertEquals(rs2.getStatusCode(),200);
+        Assert.assertEquals(rs2.getBody().jsonPath().getString("firstName"),userPayload.getFirstName());
+        Assert.assertEquals(rs2.getBody().jsonPath().getString("lastName"),userPayload.getLastName());
+
+
     }
     @Test(priority = 4)
     public void deleteUserTest(){
         Response rs= UserEndpoints.deleteUser(userPayload.getUsername());
         rs.then().log().all();
         Assert.assertEquals(rs.getStatusCode(),200);
+//        Response rs2= UserEndpoints.getUser(userPayload.getUsername());
+//        rs2.then().log().all();
+//        Assert.assertEquals(rs2.getStatusCode(),200);
+//        Assert.assertEquals(rs2.getBody().jsonPath().getString("username"),userPayload.getUsername());
     }
 }
