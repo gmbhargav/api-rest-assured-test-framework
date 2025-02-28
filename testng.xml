@@ -6,13 +6,13 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="Pet Store Tests">
         <classes>
-        <class name="api.test.DataDrivenTests">
-<!--            <methods>-->
-<!--                <include name="createUserTest"/>-->
-<!--                <include name="getUserTest"/>-->
-<!--                <include name="deleteUserTest"/>-->
-<!--            </methods>-->
-        </class>
+<!--        <class name="api.test.DataDrivenTests">-->
+<!--&lt;!&ndash;            <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                <include name="createUserTest"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <include name="getUserTest"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <include name="deleteUserTest"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </methods>&ndash;&gt;-->
+<!--        </class>-->
             <class name="api.test.UserTests">
 <!--                <methods>-->
 <!--                    <include name="createUserTest"/>-->
