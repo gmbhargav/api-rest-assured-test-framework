@@ -49,4 +49,19 @@ public class UserTests {
         Assert.assertEquals(rs.getBody().jsonPath().getString("email"),userPayload.getEmail());
     }
 
+    @Test(priority = 3)
+    public void setUserPayloadTest(){
+        userPayload.setFirstName(faker.name().firstName());
+        userPayload.setLastName(faker.name().lastName());
+        userPayload.setPhone(faker.phoneNumber().cellPhone());
+        Response rs = UserEndpoints.updateUser(userPayload.getUsername(),userPayload);
+        rs.then().log().all();
+        Assert.assertEquals(rs.getStatusCode(),200);
+    }
+    @Test(priority = 4)
+    public void deleteUserTest(){
+        Response rs= UserEndpoints.deleteUser(userPayload.getUsername());
+        rs.then().log().all();
+        Assert.assertEquals(rs.getStatusCode(),200);
+    }
 }
