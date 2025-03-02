@@ -1,16 +1,18 @@
 package api.endpoints;
 
 import api.payload.User;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.springframework.stereotype.Component;
-
+import java.util.ResourceBundle;
 import static io.restassured.RestAssured.given;
 
-//Create, read, update, delete requests for User API
-@Component
-public class UserEndpoints {
+// Reading Urls from property file
+// Create, read, update, delete requests for User API
+public class UserEndpointsFromProperties {
+     static ResourceBundle getURL(){
+        return ResourceBundle.getBundle("routes");
+    }
+
 
    public static Response createUser(User payload){
         Response response = given()
@@ -18,14 +20,14 @@ public class UserEndpoints {
                 .accept(ContentType.JSON)
                 .body(payload)
                 .when()
-                .post(Routes.post_url);
+                .post(getURL().getString("post_url"));
         return response;
     }
     public static Response getUser(String username){
        return given()
                .pathParam("username",username)
                .when()
-               .get(Routes.get_url);
+               .get(getURL().getString("get_url"));
     }
     public static Response updateUser(String username, User payload){
         return given()
@@ -34,12 +36,12 @@ public class UserEndpoints {
                 .pathParam("username",username)
                 .body(payload)
                 .when()
-                .put(Routes.update_url);
+                .put(getURL().getString("update_url"));
     }
     public static Response deleteUser(String username){
        return  given()
                .pathParam("username",username)
                .when()
-               .delete(Routes.delete_url);
+               .delete(getURL().getString("delete_url"));
     }
 }

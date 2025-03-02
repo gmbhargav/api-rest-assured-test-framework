@@ -1,10 +1,12 @@
 package api.utilities;
 
+import org.springframework.stereotype.Service;
 import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
 import java.util.Arrays;
 
+@Service
 public class DataProviders {
     String path=System.getProperty("user.dir")+"/src/test/resources/testData/UserData.xlsx";
     ExcelUtil xlUtil;

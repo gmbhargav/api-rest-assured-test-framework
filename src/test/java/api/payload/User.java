@@ -1,5 +1,8 @@
 package api.payload;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
     int id;
     String username;

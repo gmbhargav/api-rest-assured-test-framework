@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import org.springframework.stereotype.Service;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -12,6 +13,7 @@ import org.testng.ITestResult;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Service
 public class ExtentReportManager implements ITestListener {
     String reportName;
     public ExtentSparkReporter extentReporter;

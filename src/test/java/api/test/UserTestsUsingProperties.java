@@ -1,20 +1,19 @@
 package api.test;
 
 import api.endpoints.UserEndpoints;
+import api.endpoints.UserEndpointsFromProperties;
 import api.payload.User;
 import com.github.javafaker.Faker;
 import io.restassured.response.Response;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class UserTests {
+public class UserTestsUsingProperties {
 
 
-    @Autowired
     User userPayload;
 
 //    public Logger logger;
@@ -23,7 +22,7 @@ public class UserTests {
     @BeforeClass
     public void setup(){
         faker = new Faker();
-//        userPayload = new User();
+        userPayload = new User();
     }
 
     @Test(priority = 1)
@@ -35,17 +34,14 @@ public class UserTests {
         userPayload.setFirstName(faker.name().firstName());
         userPayload.setLastName(faker.name().lastName());
         userPayload.setPhone(faker.phoneNumber().cellPhone());
-        Response rs= UserEndpoints.createUser(userPayload);
+        Response rs= UserEndpointsFromProperties.createUser(userPayload);
         rs.then().log().all();
         Assert.assertEquals(rs.getStatusCode(),200);
     }
 
     @Test(priority = 2)
     public void getUserTest(){
-//        logger.info(userPayload.toString());
-//        logger.info("******** Create user ********");
-
-        Response rs= UserEndpoints.getUser(userPayload.getUsername());
+        Response rs= UserEndpointsFromProperties.getUser(userPayload.getUsername());
         rs.then().log().all();
         Assert.assertEquals(rs.getStatusCode(),200);
         Assert.assertEquals(rs.getBody().jsonPath().getString("username"),userPayload.getUsername());
@@ -54,15 +50,13 @@ public class UserTests {
 
     @Test(priority = 3)
     public void setUserPayloadTest(){
-//        logger.info("******** Update user ********");
-
         userPayload.setFirstName(faker.name().firstName());
         userPayload.setLastName(faker.name().lastName());
         userPayload.setPhone(faker.phoneNumber().cellPhone());
-        Response rs = UserEndpoints.updateUser(userPayload.getUsername(),userPayload);
+        Response rs = UserEndpointsFromProperties.updateUser(userPayload.getUsername(),userPayload);
         rs.then().log().all();
         Assert.assertEquals(rs.getStatusCode(),200);
-        Response rs2= UserEndpoints.getUser(userPayload.getUsername());
+        Response rs2= UserEndpointsFromProperties.getUser(userPayload.getUsername());
         rs2.then().log().all();
         Assert.assertEquals(rs2.getStatusCode(),200);
         Assert.assertEquals(rs2.getBody().jsonPath().getString("firstName"),userPayload.getFirstName());
@@ -72,8 +66,7 @@ public class UserTests {
     }
     @Test(priority = 4)
     public void deleteUserTest(){
-//        logger.info("******** Deleting user ********");
-        Response rs= UserEndpoints.deleteUser(userPayload.getUsername());
+        Response rs= UserEndpointsFromProperties.deleteUser(userPayload.getUsername());
         rs.then().log().all();
         Assert.assertEquals(rs.getStatusCode(),200);
     }
