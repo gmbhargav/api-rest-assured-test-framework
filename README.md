@@ -1,6 +1,5 @@
 # API Testing Framework with RestAssured
 This framework allows you to easily write, run, and report on your API tests, ensuring the reliability and functionality of your web services.
-
 # Tech stack used
   - Rest-assured Lib
   - Java
